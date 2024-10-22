@@ -25,7 +25,7 @@ const name = useNameStore()
 
       <!-- Subtittle -->
       <h2 class="m-plus-rounded-1c-bold">Work</h2>
-      <hr>
+      <!-- <hr> -->
 
       <!-- Description -->
       <p class="eme-des arvo-regular eme-text-init">
