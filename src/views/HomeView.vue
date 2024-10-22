@@ -25,6 +25,7 @@ const showOptions = () => {
   >
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
     <BodyCo />
+    <!-- <AvatarCo /> -->
   </div>
 
   <FooterCo />

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useModeStore } from '@/stores/mode'
+import { useNameStore } from '@/stores/name'
 
 const mode = useModeStore()
+const name = useNameStore()
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const mode = useModeStore()
       </p>
     </div>
 
-    <h1 class="eme-text-center m-plus-rounded-1c-bold">DILAN MARCANO</h1>
+    <h1 class="eme-text-center m-plus-rounded-1c-bold">{{ name.homePage }}</h1>
 
     <p class="arvo-regular eme-text-init">
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit, sed. Vero

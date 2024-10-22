@@ -51,7 +51,6 @@
 }
 
 /* Core app */
-
 .eme-core-center-app {
   display: flex;
   justify-content: center;
@@ -59,11 +58,11 @@
 
 .eme-orizontal {
   display: flex;
-  flex-direction: column;
 }
 
 .eme-vertical {
   display: flex;
+  flex-direction: column;
 }
 
 /* Text */
@@ -78,4 +77,10 @@
 /* Transition */
 .principal-trasition {
   transition: background-color 1s ease;
+}
+
+/* Animations */
+.scale:hover {
+  transition: 0.3s;
+  scale: 104%;
 }
