@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import BodyCo from '@/components/BodyCo.vue';
 import HeaderCo from '@/components/HeaderCo.vue';
+import FooterCo from '@/components/FooterCo.vue';
 
 const isLightMode = ref(true); // Variable reactiva para controlar el modo
 
@@ -20,4 +21,6 @@ const showOptions = () => {
         <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
         <BodyCo />
     </div>
+
+    <FooterCo />
 </template>

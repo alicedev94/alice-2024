@@ -43,3 +43,6 @@ a {
   text-decoration: none;
   color: var(--eme-color-light-gray);
 }
+footer {
+  background-color: black;
+}
