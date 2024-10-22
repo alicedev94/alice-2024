@@ -10,19 +10,28 @@ const name = useNameStore()
 </script>
 
 <template>
+  <!-- Card -->
   <div class="eme-core-center-app">
-    <div class="eme-card scale">
-      <div
-        :class="[
-          'principal-trasition eme-content eme-orizontal',
-          mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
-        ]"
-      >
+    <div class="eme-card ">
+      <div :class="[
+        'principal-trasition eme-content eme-orizontal scale',
+        mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
+      ]">
         <AvatarCo />
         <p class="text-card eme-text-center arvo-regular">
           Hello, I'm an indie app developer based in Japan!
         </p>
       </div>
+
+      <!-- Subtittle -->
+      <h2 class="m-plus-rounded-1c-bold">Work</h2>
+      <hr>
+
+      <!-- Description -->
+      <p class="eme-des arvo-regular eme-text-init">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id impedit, reiciendis recusandae eos nulla iusto
+        voluptate ut distinctio maiores maxime numquam iste fugit eligendi ipsa tempora quibusdam omnis illum atque!
+      </p>
     </div>
   </div>
 </template>
@@ -38,5 +47,21 @@ const name = useNameStore()
   align-items: center;
   text-align: justify;
   margin-left: 1.75rem;
+}
+
+.eme-des {
+  margin-top: 1rem;
+}
+
+h2 {
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+hr {
+  border: 0;
+  height: 5px;
+  background: green;
+  margin: 0.5rem 30rem 2rem 0rem;
 }
 </style>
