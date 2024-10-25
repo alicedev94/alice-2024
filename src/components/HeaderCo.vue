@@ -12,10 +12,13 @@ import menuLightTheme from '@/assets/icon/menu-dark.svg'
 const mode = useModeStore()
 const name = useNameStore()
 
+// const isTransitioning = false
 </script>
 
 <template>
-  <header :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']">
+  <header
+    :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']"
+  >
     <nav class="eme-nav">
       <div class="nav-logo m-plus-rounded-1c-bold eme-orizontal logo">
         <div class="emerald dimension"></div>
@@ -23,10 +26,16 @@ const name = useNameStore()
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn">
-          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
+          <img
+            :src="mode.isLightMode ? sunLightTheme : moonDarkTheme"
+            alt="mode.svg"
+          />
         </p>
         <p @click="$emit('showOptions')" class="eme-btn">
-          <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
+          <img
+            :src="mode.isLightMode ? menuLightTheme : menuDarkTheme"
+            alt="menu.svg"
+          />
         </p>
       </div>
     </nav>
@@ -85,5 +94,16 @@ const name = useNameStore()
 
 .title {
   font-size: 1.8rem;
+}
+
+/* img */
+
+img {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+img.transitioning {
+  opacity: 0;
 }
 </style>

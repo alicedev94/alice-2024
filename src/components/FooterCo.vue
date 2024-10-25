@@ -8,17 +8,19 @@ const name = useNameStore()
 
 <template>
   <!-- <footer class="eme-text-center"> -->
-  <footer :class="[
-    'principal-trasition eme-footer eme-text-center',
-    mode.isLightMode ? 'eme-footer-light' : 'eme-footer-dark',
-  ]">
-
-    <a :class="['segoe-UI', mode.isLightMode ? 'add-footer-color' : 'none',]" href="/">&copy; 2024 {{ name.homePage }}.
-      Todos los derechos reservados.
+  <footer
+    :class="[
+      'principal-trasition eme-footer eme-text-center',
+      mode.isLightMode ? 'eme-footer-light' : 'eme-footer-dark',
+    ]"
+  >
+    <a
+      :class="['segoe-UI', mode.isLightMode ? 'add-footer-color' : 'none']"
+      href="/"
+      >&copy; 2024 {{ name.homePage }}. Todos los derechos reservados.
     </a>
   </footer>
 </template>
-
 
 <style scoped>
 .eme-footer {
@@ -29,5 +31,6 @@ const name = useNameStore()
   color: var(--eme-footer-light-color);
 }
 
-.none {}
+.none {
+}
 </style>
