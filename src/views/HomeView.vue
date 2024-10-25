@@ -20,13 +20,14 @@ const onlyTestContent = [0, 1, 2]
 </script>
 
 <template>
-  <div :class="[
-    'principal-trasition',
-    mode.isLightMode ? 'eme-light' : 'eme-dark',
-  ]">
+  <div
+    :class="[
+      'principal-trasition',
+      mode.isLightMode ? 'eme-light' : 'eme-dark',
+    ]"
+  >
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
     <BodyCo v-for="item in onlyTestContent" />
-
   </div>
   <FooterCo />
 </template>

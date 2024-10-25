@@ -3,14 +3,15 @@ import { ref } from 'vue'
 import { useModeStore } from '@/stores/mode'
 
 import { useNameStore } from '@/stores/name'
-import menuLight from '@/assets/icon/menu-light.svg'
-import sunLight from '@/assets/icon/sun-light.svg'
+
+import moonDarkTheme from '@/assets/icon/moon-light.svg'
+import sunLightTheme from '@/assets/icon/sun-dark.svg'
+import menuDarkTheme from '@/assets/icon/menu-light.svg'
+import menuLightTheme from '@/assets/icon/menu-dark.svg'
 
 const mode = useModeStore()
 const name = useNameStore()
 
-// DARK -----  SUN
-// LIGHT  -- --- MON
 </script>
 
 <template>
@@ -21,8 +22,12 @@ const name = useNameStore()
         <p class="title">{{ name.homePage }}</p>
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
-        <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn"><img :src="sunLight" alt="menu.svg"></p>
-        <p @click="$emit('showOptions')" class="eme-btn"><img :src="menuLight" alt="menu.svg"></p>
+        <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn">
+          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
+        </p>
+        <p @click="$emit('showOptions')" class="eme-btn">
+          <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
+        </p>
       </div>
     </nav>
   </header>
@@ -38,7 +43,7 @@ const name = useNameStore()
 .emerald {
   width: 200px;
   height: 200px;
-  background: linear-gradient(45deg, #50C878, #7FFFD4, #008B8B, #50C878);
+  background: linear-gradient(45deg, #50c878, #7fffd4, #008b8b, #50c878);
   background-size: 400% 400%;
   animation: sparkle 3s linear infinite;
   display: flex;
@@ -47,7 +52,8 @@ const name = useNameStore()
   clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
   font-size: 24px;
   color: black;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5),
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.5),
     inset 5px 5px 15px rgba(0, 0, 0, 0.3),
     inset -5px -5px 15px rgba(255, 255, 255, 0.3);
 }

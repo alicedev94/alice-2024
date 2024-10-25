@@ -12,11 +12,13 @@ const name = useNameStore()
 <template>
   <!-- Card -->
   <div class="eme-core-center-app">
-    <div class="eme-card ">
-      <div :class="[
-        'principal-trasition eme-content eme-orizontal scale',
-        mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
-      ]">
+    <div class="eme-card">
+      <div
+        :class="[
+          'principal-trasition eme-content eme-orizontal scale',
+          mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
+        ]"
+      >
         <AvatarCo />
         <p class="text-card eme-text-center arvo-regular">
           Hello, I'm an indie app developer based in Japan!
@@ -29,8 +31,10 @@ const name = useNameStore()
 
       <!-- Description -->
       <p class="eme-des arvo-regular eme-text-init">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id impedit, reiciendis recusandae eos nulla iusto
-        voluptate ut distinctio maiores maxime numquam iste fugit eligendi ipsa tempora quibusdam omnis illum atque!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id impedit,
+        reiciendis recusandae eos nulla iusto voluptate ut distinctio maiores
+        maxime numquam iste fugit eligendi ipsa tempora quibusdam omnis illum
+        atque!
       </p>
     </div>
   </div>
