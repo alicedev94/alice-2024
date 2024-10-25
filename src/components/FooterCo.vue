@@ -14,7 +14,9 @@ const name = useNameStore()
       mode.isLightMode ? 'eme-footer-light' : 'eme-footer-dark',
     ]"
   >
-    <a class="segoe-UI" href="/"
+    <a
+      :class="['segoe-UI', mode.isLightMode ? 'add-footer-color' : 'none']"
+      href="/"
       >&copy; 2024 {{ name.homePage }}. Todos los derechos reservados.
     </a>
   </footer>
@@ -23,5 +25,12 @@ const name = useNameStore()
 <style scoped>
 .eme-footer {
   padding: 5rem;
+}
+
+.add-footer-color {
+  color: var(--eme-footer-light-color);
+}
+
+.none {
 }
 </style>
