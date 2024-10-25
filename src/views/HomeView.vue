@@ -14,6 +14,9 @@ const changeMode = () => {
 const showOptions = () => {
   console.log('showOptions')
 }
+
+// Test for content and deploy
+const onlyTestContent = [0, 1, 2]
 </script>
 
 <template>
@@ -22,8 +25,8 @@ const showOptions = () => {
     mode.isLightMode ? 'eme-light' : 'eme-dark',
   ]">
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
-    <BodyCo />
-  </div>
+    <BodyCo v-for="item in onlyTestContent" />
 
+  </div>
   <FooterCo />
 </template>
