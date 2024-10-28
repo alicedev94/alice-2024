@@ -50,43 +50,38 @@ watch(documentWidth, (newValue, oldValue) => {
 });
 </script>
 
-
 <template>
   <header :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']">
     <nav class="eme-nav">
       <div class="nav-logo m-plus-rounded-1c-bold eme-orizontal logo">
         <div class="emerald dimension"></div>
-        <p class="header-font ">{{ name.homePage }}</p>
+        <p class="header-font header-title">{{ name.homePage }}</p>
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <!-- Work Experience -->
-
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
           <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
-          <p class="header-font">Work Experience</p>
-
+          <p class="header-font underline-p">Work Experience</p>
         </div>
         <!-- 
         <div class="eme-br animate__fadeOutRight"></div> -->
 
-
-
         <!-- Linkedin -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
           <img :src="mode.isLightMode ? gitHubLightTheme : linkeDarkTheme" alt="menu.svg" />
-          <p class="header-font">Linkedin</p>
+          <p class="header-font underline-p">Linkedin</p>
         </div>
 
         <!-- GitHub -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
           <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
-          <p class="header-font">Source</p>
+          <p class="header-font underline-p">Source</p>
         </div>
 
         <!-- Theme  -->
         <div @click="$emit('changeMode')" class="eme-nav-theme eme-btn eme-orizontal header-element">
           <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
-          <p v-if="isDesktop" class="header-font">Dark</p>
+          <!-- <p v-if="isDesktop" class="header-font underline-p">Dark</p> -->
         </div>
 
         <!-- Menu -->
@@ -99,6 +94,11 @@ watch(documentWidth, (newValue, oldValue) => {
 </template>
 
 <style scoped>
+.header-title {
+
+  border-bottom: 2px solid #008b8b;
+}
+
 .eme-btn {
   align-items: center;
 }
@@ -171,11 +171,36 @@ img.transitioning {
   opacity: 0;
 }
 
-/* new eme */
-.eme-br:hover {
-  height: 1rem;
+/* fade  */
+/* .underline-p {
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 1s ease;
+}
+
+.underline-p:hover {
+  border-bottom: 2px solid #008b8b;
+} */
+
+/* Bar */
+.underline-p {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underline-p::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #008b8b;
+  transition: width 0.3s ease;
+}
+
+.underline-p:hover::after {
   width: 100%;
-  background-color: greenyellow;
-  /* Ajusta según sea necesario */
+
 }
 </style>
