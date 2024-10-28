@@ -1,25 +1,30 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useModeStore } from '@/stores/mode'
-
 import { useNameStore } from '@/stores/name'
 
 // Dark theme images.
 import moonDarkTheme from '@/assets/icon/theme/moon-light.svg'
 import menuDarkTheme from '@/assets/icon/menu/menu-light.svg'
 import gitHubDarkTheme from '@/assets/icon/gitHub/github-dark.svg'
+import linkeDarkTheme from '@/assets/icon/linkedin/linke-dark.svg'
+import vueDarkTheme from '@/assets/icon/Work/vue-dark.svg'
 
 // Light theme images.
 import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
 import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
 import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
+import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
 
+// State
 const mode = useModeStore()
 const name = useNameStore()
 
+// detect that it is mobile
 const documentWidth = ref(document.documentElement.clientWidth);
 
 const isMobile = ref(false)
+const isDesktop = ref(true)
 
 const handleResize = () => {
   documentWidth.value = document.documentElement.clientWidth;
@@ -33,13 +38,14 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
 });
 
+// Whatchers
 watch(documentWidth, (newValue, oldValue) => {
   if (newValue <= 769) {
     isMobile.value = true
-    console.log(isMobile.value)
+    isDesktop.value = false
   } else {
     isMobile.value = false
-    console.log(isMobile.value)
+    isDesktop.value = true
   }
 });
 </script>
@@ -49,24 +55,37 @@ watch(documentWidth, (newValue, oldValue) => {
     <nav class="eme-nav">
       <div class="nav-logo m-plus-rounded-1c-bold eme-orizontal logo">
         <div class="emerald dimension"></div>
-        <p class="title">{{ name.homePage }}</p>
+        <p class="header-font ">{{ name.homePage }}</p>
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
 
+        <!-- Work Experience -->
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
+          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
+          <p class="header-font">Work Experience</p>
+        </div>
 
+
+        <!-- Linkedin -->
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
+          <img :src="mode.isLightMode ? gitHubLightTheme : linkeDarkTheme" alt="menu.svg" />
+          <p class="header-font">Linkedin</p>
+        </div>
 
         <!-- GitHub -->
-        <p @click="$emit('showOptions')" class="eme-btn">
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
           <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
-        </p>
+          <p class="header-font">Source</p>
+        </div>
 
         <!-- Theme  -->
-        <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn">
+        <div @click="$emit('changeMode')" class="eme-nav-theme eme-btn eme-orizontal header-element">
           <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
-        </p>
+          <p v-if="isDesktop" class="header-font">Dark</p>
+        </div>
 
         <!-- Menu -->
-        <p v-if="isMobile" @click="$emit('showOptions')" class="eme-btn">
+        <p v-if="isMobile" @click="$emit('showOptions')" class="eme-btn ">
           <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
         </p>
       </div>
@@ -75,6 +94,10 @@ watch(documentWidth, (newValue, oldValue) => {
 </template>
 
 <style scoped>
+.eme-btn {
+  align-items: center;
+}
+
 .eme-btn:hover {
   transition: 0.3s;
   scale: 104%;
@@ -124,8 +147,12 @@ watch(documentWidth, (newValue, oldValue) => {
   align-items: center;
 }
 
-.title {
+.header-font {
   font-size: 1.8rem;
+}
+
+.header-element {
+  margin: 0 1.5rem;
 }
 
 /* img */
