@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useModeStore } from '@/stores/mode'
 
 import { useNameStore } from '@/stores/name'
 
-import moonDarkTheme from '@/assets/icon/moon-light.svg'
-import sunLightTheme from '@/assets/icon/sun-dark.svg'
-import menuDarkTheme from '@/assets/icon/menu-light.svg'
-import menuLightTheme from '@/assets/icon/menu-dark.svg'
+// Dark theme images.
+import moonDarkTheme from '@/assets/icon/theme/moon-light.svg'
+import menuDarkTheme from '@/assets/icon/menu/menu-light.svg'
+import gitHubDarkTheme from '@/assets/icon/gitHub/github-dark.svg'
+
+// Light theme images.
+import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
+import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
+import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
+
 
 const mode = useModeStore()
 const name = useNameStore()
 
-// const isTransitioning = false
+
 </script>
 
 <template>
-  <header
-    :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']"
-  >
+  <header :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']">
     <nav class="eme-nav">
       <div class="nav-logo m-plus-rounded-1c-bold eme-orizontal logo">
         <div class="emerald dimension"></div>
@@ -26,16 +30,14 @@ const name = useNameStore()
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn">
-          <img
-            :src="mode.isLightMode ? sunLightTheme : moonDarkTheme"
-            alt="mode.svg"
-          />
+          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
         </p>
         <p @click="$emit('showOptions')" class="eme-btn">
-          <img
-            :src="mode.isLightMode ? menuLightTheme : menuDarkTheme"
-            alt="menu.svg"
-          />
+          <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
+        </p>
+
+        <p @click="$emit('showOptions')" class="eme-btn">
+          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
         </p>
       </div>
     </nav>
