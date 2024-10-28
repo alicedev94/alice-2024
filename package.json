@@ -1,6 +1,6 @@
 {
   "name": "vue-project",
-  "version": "0.0.2-alpha.0",
+  "version": "0.0.3-alpha.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,6 +14,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "pinia": "^2.2.4",
     "three": "^0.169.0",
     "vue": "^3.5.12",

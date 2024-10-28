@@ -13,21 +13,18 @@ const name = useNameStore()
   <!-- Card -->
   <div class="eme-core-center-app">
     <div class="eme-card">
-      <div
-        :class="[
-          'principal-trasition eme-content eme-orizontal scale',
-          mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
-        ]"
-      >
+      <div :class="[
+        'principal-trasition eme-content eme-orizontal',
+        mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
+      ]">
         <AvatarCo />
         <p class="text-card eme-text-center arvo-regular">
-          Hello, I'm an indie app developer based in Japan!
+          Independent Software Developer, passionate lover and evangelist of JavaScript.
         </p>
       </div>
 
       <!-- Subtittle -->
       <h2 class="m-plus-rounded-1c-bold">Work</h2>
-      <!-- <hr> -->
 
       <!-- Description -->
       <p class="eme-des arvo-regular eme-text-init">
@@ -60,12 +57,7 @@ const name = useNameStore()
 h2 {
   margin-top: 3rem;
   margin-bottom: 0;
-}
-
-hr {
-  border: 0;
-  height: 5px;
-  background: green;
-  margin: 0.5rem 30rem 2rem 0rem;
+  border-bottom: 4px solid #c2c2c2;
+  width: 10%;
 }
 </style>

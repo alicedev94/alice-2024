@@ -1,41 +1,92 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useModeStore } from '@/stores/mode'
-
 import { useNameStore } from '@/stores/name'
 
-import moonDarkTheme from '@/assets/icon/moon-light.svg'
-import sunLightTheme from '@/assets/icon/sun-dark.svg'
-import menuDarkTheme from '@/assets/icon/menu-light.svg'
-import menuLightTheme from '@/assets/icon/menu-dark.svg'
+// Dark theme images.
+import moonDarkTheme from '@/assets/icon/theme/moon-light.svg'
+import menuDarkTheme from '@/assets/icon/menu/menu-light.svg'
+import gitHubDarkTheme from '@/assets/icon/gitHub/github-dark.svg'
+import linkeDarkTheme from '@/assets/icon/linkedin/linke-dark.svg'
+import vueDarkTheme from '@/assets/icon/Work/vue-dark.svg'
 
+// Light theme images.
+import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
+import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
+import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
+import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
+
+// State
 const mode = useModeStore()
 const name = useNameStore()
 
-// const isTransitioning = false
+// detect that it is mobile
+const documentWidth = ref(document.documentElement.clientWidth);
+
+const isMobile = ref(false)
+const isDesktop = ref(true)
+
+const handleResize = () => {
+  documentWidth.value = document.documentElement.clientWidth;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
+
+// Whatchers
+watch(documentWidth, (newValue, oldValue) => {
+  if (newValue <= 769) {
+    isMobile.value = true
+    isDesktop.value = false
+  } else {
+    isMobile.value = false
+    isDesktop.value = true
+  }
+});
 </script>
 
 <template>
-  <header
-    :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']"
-  >
+  <header :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']">
     <nav class="eme-nav">
       <div class="nav-logo m-plus-rounded-1c-bold eme-orizontal logo">
         <div class="emerald dimension"></div>
-        <p class="title">{{ name.homePage }}</p>
+        <p class="header-font header-title">{{ name.homePage }}</p>
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
-        <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn">
-          <img
-            :src="mode.isLightMode ? sunLightTheme : moonDarkTheme"
-            alt="mode.svg"
-          />
-        </p>
-        <p @click="$emit('showOptions')" class="eme-btn">
-          <img
-            :src="mode.isLightMode ? menuLightTheme : menuDarkTheme"
-            alt="menu.svg"
-          />
+        <!-- Work Experience -->
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
+          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
+          <p class="header-font underline-p">Work Experience</p>
+        </div>
+        <!-- 
+        <div class="eme-br animate__fadeOutRight"></div> -->
+
+        <!-- Linkedin -->
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
+          <img :src="mode.isLightMode ? gitHubLightTheme : linkeDarkTheme" alt="menu.svg" />
+          <p class="header-font underline-p">Linkedin</p>
+        </div>
+
+        <!-- GitHub -->
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
+          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
+          <p class="header-font underline-p">Source</p>
+        </div>
+
+        <!-- Theme  -->
+        <div @click="$emit('changeMode')" class="eme-nav-theme eme-btn eme-orizontal header-element">
+          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
+          <!-- <p v-if="isDesktop" class="header-font underline-p">Dark</p> -->
+        </div>
+
+        <!-- Menu -->
+        <p v-if="isMobile" @click="$emit('showOptions')" class="eme-btn ">
+          <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
         </p>
       </div>
     </nav>
@@ -43,9 +94,18 @@ const name = useNameStore()
 </template>
 
 <style scoped>
+.header-title {
+
+  border-bottom: 2px solid #008b8b;
+}
+
+.eme-btn {
+  align-items: center;
+}
+
 .eme-btn:hover {
-  transition: 0.3s;
-  scale: 104%;
+  transition: 0.1s;
+  scale: 110%;
   cursor: pointer;
 }
 
@@ -92,8 +152,12 @@ const name = useNameStore()
   align-items: center;
 }
 
-.title {
+.header-font {
   font-size: 1.8rem;
+}
+
+.header-element {
+  margin: 0 1.5rem;
 }
 
 /* img */
@@ -105,5 +169,38 @@ img {
 
 img.transitioning {
   opacity: 0;
+}
+
+/* fade  */
+/* .underline-p {
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 1s ease;
+}
+
+.underline-p:hover {
+  border-bottom: 2px solid #008b8b;
+} */
+
+/* Bar */
+.underline-p {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underline-p::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #008b8b;
+  transition: width 0.3s ease;
+}
+
+.underline-p:hover::after {
+  width: 100%;
+
 }
 </style>

@@ -1,4 +1,8 @@
+// emerald 
 import './assets/emerald/styles/base.css'
+
+// animate.css
+import 'animate.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
