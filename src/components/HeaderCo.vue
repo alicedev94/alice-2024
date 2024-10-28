@@ -14,11 +14,34 @@ import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
 import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
 import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
 
-
 const mode = useModeStore()
 const name = useNameStore()
 
+const documentWidth = ref(document.documentElement.clientWidth);
 
+const isMobile = ref(false)
+
+const handleResize = () => {
+  documentWidth.value = document.documentElement.clientWidth;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
+
+watch(documentWidth, (newValue, oldValue) => {
+  if (newValue <= 769) {
+    isMobile.value = true
+    console.log(isMobile.value)
+  } else {
+    isMobile.value = false
+    console.log(isMobile.value)
+  }
+});
 </script>
 
 <template>
@@ -29,15 +52,22 @@ const name = useNameStore()
         <p class="title">{{ name.homePage }}</p>
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
+
+
+
+        <!-- GitHub -->
+        <p @click="$emit('showOptions')" class="eme-btn">
+          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
+        </p>
+
+        <!-- Theme  -->
         <p @click="$emit('changeMode')" class="eme-nav-theme eme-btn">
           <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
         </p>
-        <p @click="$emit('showOptions')" class="eme-btn">
-          <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
-        </p>
 
-        <p @click="$emit('showOptions')" class="eme-btn">
-          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
+        <!-- Menu -->
+        <p v-if="isMobile" @click="$emit('showOptions')" class="eme-btn">
+          <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
         </p>
       </div>
     </nav>

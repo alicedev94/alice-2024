@@ -8,10 +8,12 @@ const name = useNameStore()
 
 <template>
   <div class="eme-card">
-    <div :class="[
-      'principal-trasition eme-content',
-      mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
-    ]">
+    <div
+      :class="[
+        'principal-trasition eme-content',
+        mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
+      ]"
+    >
       <p class="eme-text-center arvo-regular">
         Hello, I'm an indie app developer based in Japan!
       </p>

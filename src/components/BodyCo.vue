@@ -13,10 +13,12 @@ const name = useNameStore()
   <!-- Card -->
   <div class="eme-core-center-app">
     <div class="eme-card">
-      <div :class="[
-        'principal-trasition eme-content eme-orizontal scale',
-        mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
-      ]">
+      <div
+        :class="[
+          'principal-trasition eme-content eme-orizontal scale',
+          mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
+        ]"
+      >
         <AvatarCo />
         <p class="text-card eme-text-center arvo-regular">
           Lorem ipsum dolor sit amet.
