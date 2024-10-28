@@ -50,6 +50,7 @@ watch(documentWidth, (newValue, oldValue) => {
 });
 </script>
 
+
 <template>
   <header :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']">
     <nav class="eme-nav">
@@ -58,12 +59,16 @@ watch(documentWidth, (newValue, oldValue) => {
         <p class="header-font ">{{ name.homePage }}</p>
       </div>
       <div class="eme-orizontal m-plus-rounded-1c-bold">
-
         <!-- Work Experience -->
-        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
+
+        <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
           <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
           <p class="header-font">Work Experience</p>
+
         </div>
+        <!-- 
+        <div class="eme-br animate__fadeOutRight"></div> -->
+
 
 
         <!-- Linkedin -->
@@ -99,8 +104,8 @@ watch(documentWidth, (newValue, oldValue) => {
 }
 
 .eme-btn:hover {
-  transition: 0.3s;
-  scale: 104%;
+  transition: 0.1s;
+  scale: 110%;
   cursor: pointer;
 }
 
@@ -164,5 +169,13 @@ img {
 
 img.transitioning {
   opacity: 0;
+}
+
+/* new eme */
+.eme-br:hover {
+  height: 1rem;
+  width: 100%;
+  background-color: greenyellow;
+  /* Ajusta según sea necesario */
 }
 </style>
