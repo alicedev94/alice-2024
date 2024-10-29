@@ -19,7 +19,8 @@ const name = useNameStore()
         mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
       ]">
         <AvatarCo />
-        <p class="text-card eme-text-center arvo-regular">
+        <p
+          :class="['text-card eme-text-center arvo-regular', mode.isLightMode ? 'emerald-text-light' : 'emerald-text-dark']">
           Independent Software Developer, passionate lover and evangelist of JavaScript.
         </p>
       </div>
@@ -69,5 +70,57 @@ h2 {
 
 .font-color-dark {
   color: var(--eme-color-font-light);
+}
+
+
+/* v1 */
+.emerald-text-dark {
+  font-size: 1.7rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #50C878, #7FFFD4, #008B8B, #50C878);
+  background-size: 400% 400%;
+  animation: sparkle 4.5s linear infinite;
+  -webkit-background-clip: text;
+  color: transparent;
+
+}
+
+@keyframes sparkle {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.emerald-text-light {
+  font-size: 1.7rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #004f4f, #008b8b, #00afaf, #004f4f);
+  /* Degradados de #008b8b */
+  background-size: 400% 400%;
+  animation: sparkle-dark 4.5s linear infinite;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@keyframes sparkle-dark {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 </style>

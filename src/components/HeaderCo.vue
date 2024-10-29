@@ -22,7 +22,6 @@ const mode = useModeStore()
 const name = useNameStore()
 
 // detect that it is mobile
-
 const documentWidth = ref(document.documentElement.clientWidth);
 const isMobile = ref(false);
 const isDesktop = ref(true);
