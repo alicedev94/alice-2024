@@ -48,8 +48,8 @@ const updateDeviceState = () => {
 onMounted(() => {
   // Restaurar el estado desde localStorage
   if (localStorage.getItem('isMobile')) {
-    isMobile.value = JSON.parse(localStorage.getItem('isMobile'));
-    isDesktop.value = JSON.parse(localStorage.getItem('isDesktop'));
+    isMobile.value = JSON.parse(localStorage.getItem('isMobile') as string);
+    isDesktop.value = JSON.parse(localStorage.getItem('isDesktop') as string);
   } else {
     // Inicializar el estado correcto según el tamaño actual del documento
     updateDeviceState();
