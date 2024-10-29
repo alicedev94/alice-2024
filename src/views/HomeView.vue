@@ -18,7 +18,7 @@ const showOptions = () => {
 }
 
 // Test for content and deploy
-const onlyTestContent = [0, 1, 2]
+const onlyTestContent = [0]
 </script>
 
 <template>
