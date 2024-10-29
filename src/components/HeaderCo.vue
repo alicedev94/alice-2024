@@ -8,14 +8,14 @@ import moonDarkTheme from '@/assets/icon/theme/moon-light.svg'
 import menuDarkTheme from '@/assets/icon/menu/menu-light.svg'
 import gitHubDarkTheme from '@/assets/icon/gitHub/github-dark.svg'
 import linkeDarkTheme from '@/assets/icon/linkedin/linke-dark.svg'
-import vueDarkTheme from '@/assets/icon/Work/vue-dark.svg'
+import vueDarkTheme from '@/assets/icon/Work/logo-vue-dark.svg'
 
 // Light theme images.
 import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
 import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
 import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
 import linkeLightTheme from '@/assets/icon/linkedin/linke-light.svg'
-import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
+import vueLightTheme from '@/assets/icon/Work/logo-vue-light.svg'
 
 // State
 const mode = useModeStore()
