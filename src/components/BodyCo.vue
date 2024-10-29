@@ -10,6 +10,7 @@ const name = useNameStore()
 </script>
 
 <template>
+
   <!-- Card -->
   <div class="eme-core-center-app">
     <div class="eme-card">
