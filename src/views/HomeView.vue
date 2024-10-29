@@ -28,8 +28,6 @@ const onlyTestContent = [0, 1, 2]
   ]">
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
     <BodyCo v-for="item in onlyTestContent" />
-    <!-- 
-    <Image /> -->
   </div>
   <FooterCo />
 </template>

@@ -11,8 +11,17 @@
   background: linear-gradient(45deg, #C0C0C0, #D3D3D3, #A9A9A9, #F5F5F5); */
 
   /* Theme */
-  --eme-color-light: #f0e7db;
-  --eme-color-dark: #202023;
+ --eme-color-light: #ffffff;   /*  crazdog-color #f0e7db */
+  --eme-color-dark: #000000;  /*  crazdog-color #202023 */
 
   --eme-footer-light-color: #332f2c;
+
+  /* New theme */
+  --eme-color-font-light: #9f9f9f;
+  --eme-color-font-dark: #242424;
+
+  --eme-color-card-light: #f9f9f9;
+  --eme-color-card-dark: #242424;
+
+  --eme-color-nav-light: #f9f9f9;
 }

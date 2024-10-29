@@ -22,7 +22,6 @@ const mode = useModeStore()
 const name = useNameStore()
 
 // detect that it is mobile
-
 const documentWidth = ref(document.documentElement.clientWidth);
 const isMobile = ref(false);
 const isDesktop = ref(true);
@@ -64,35 +63,38 @@ watch(documentWidth, (newValue, oldValue) => {
 <template>
   <header :class="['eme-header', mode.isLightMode ? 'eme-nav-light' : 'eme-nav-dark']">
     <nav class="eme-nav">
+      <!-- Logo -->
       <div class="nav-logo m-plus-rounded-1c-bold eme-orizontal logo">
         <div class="emerald dimension"></div>
         <p class="header-font header-title">{{ name.homePage }}</p>
       </div>
+
+      <!-- Items -->
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <!-- Work Experience -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
-          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="logo-vue.svg" />
           <p class="header-font underline-p">Work Experience</p>
         </div>
-        <!-- 
-        <div class="eme-br animate__fadeOutRight"></div> -->
 
         <!-- Linkedin -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? linkeLightTheme : linkeDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? linkeLightTheme : linkeDarkTheme" alt="logo-linkedin.svg" />
           <p class="header-font underline-p">Linkedin</p>
         </div>
 
         <!-- GitHub -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="github.svg" />
           <p class="header-font underline-p">Source</p>
         </div>
+      </div>
 
+      <!-- items 2 -->
+      <div class="eme-orizontal items-2">
         <!-- Theme  -->
-        <div @click="$emit('changeMode')" class="eme-nav-theme eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
-          <!-- <p v-if="isDesktop" class="header-font underline-p">Dark</p> -->
+        <div v-if="isDesktop" @click="$emit('changeMode')" class="eme-nav-theme eme-btn eme-orizontal header-element">
+          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="theme.svg" />
         </div>
 
         <!-- Menu -->
@@ -100,14 +102,16 @@ watch(documentWidth, (newValue, oldValue) => {
           <img :src="mode.isLightMode ? menuLightTheme : menuDarkTheme" alt="menu.svg" />
         </p>
       </div>
+
     </nav>
   </header>
 </template>
 
 <style scoped>
 .header-title {
-
-  border-bottom: 2px solid #008b8b;
+  text-decoration: line-through;
+  text-decoration-color: #008b8b;
+  text-decoration-thickness: 2px;
 }
 
 .eme-btn {
@@ -213,5 +217,11 @@ img.transitioning {
 .underline-p:hover::after {
   width: 100%;
 
+}
+
+.items-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

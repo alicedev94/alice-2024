@@ -9,8 +9,9 @@
 }
 
 .eme-nav-light {
-  background: var(--eme-color-white-3);
+  /* background: rgba(249, 249, 249, 0.8); */
   backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
 }
 
 .eme-nav-dark {
@@ -18,16 +19,17 @@
 }
 
 .eme-content-dark {
-  background-color: var(--eme-color-white-2);
+  background-color: var(--eme-color-card-dark);
 }
 
 .eme-content-light {
-  background-color: var(--eme-color-white-3);
+  background-color: var(--eme-color-card-light);
 }
 
 .eme-footer-light {
   background-color: var(--eme-color-light);
 }
+
 .eme-footer-dark {
   background-color: var(--eme-color-dark);
 }

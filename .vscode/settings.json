@@ -38,5 +38,8 @@
   "peacock.color": "#f9e64f",
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }
