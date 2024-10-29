@@ -25,14 +25,15 @@ const name = useNameStore()
       </div>
 
       <!-- Subtittle -->
-      <h2 class="m-plus-rounded-1c-bold">Work</h2>
+      <h2 class="m-plus-rounded-1c-bold">About</h2>
 
       <!-- Description -->
-      <p class="eme-des arvo-regular eme-text-init">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id impedit,
-        reiciendis recusandae eos nulla iusto voluptate ut distinctio maiores
-        maxime numquam iste fugit eligendi ipsa tempora quibusdam omnis illum
-        atque!
+      <p :class="['eme-des arvo-regular eme-text-init', mode.isLightMode ? 'font-color-light' : 'font-color-dark']">
+        As an Independent Software Developer, my passion for coding is deeply rooted in the principles of open-source,
+        understanding the mechanics of things, and a love for video games. Inspired by the series SAO, which brilliantly
+        intertwines a fascinating virtual world with cutting-edge technology, I strive to create software that bridges
+        imagination and innovation. I am dedicated to continually pushing the boundaries of web development to deliver
+        top-tier, dynamic applications.
       </p>
     </div>
   </div>
@@ -59,6 +60,14 @@ h2 {
   margin-top: 3rem;
   margin-bottom: 0;
   border-bottom: 4px solid #c2c2c2;
-  width: 10%;
+  width: 12.5%;
+}
+
+.font-color-light {
+  color: var(--eme-color-font-dark);
+}
+
+.font-color-dark {
+  color: var(--eme-color-font-light);
 }
 </style>
