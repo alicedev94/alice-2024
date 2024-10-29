@@ -29,7 +29,6 @@ const isDesktop = ref(true);
 
 const handleResize = () => {
   documentWidth.value = document.documentElement.clientWidth;
-  updateDeviceState();
 };
 
 const updateDeviceState = () => {
@@ -40,20 +39,11 @@ const updateDeviceState = () => {
     isMobile.value = false;
     isDesktop.value = true;
   }
-  // Guardar el estado en localStorage
-  localStorage.setItem('isMobile', JSON.stringify(isMobile.value));
-  localStorage.setItem('isDesktop', JSON.stringify(isDesktop.value));
 };
 
 onMounted(() => {
-  // Restaurar el estado desde localStorage
-  if (localStorage.getItem('isMobile')) {
-    isMobile.value = JSON.parse(localStorage.getItem('isMobile') as string);
-    isDesktop.value = JSON.parse(localStorage.getItem('isDesktop') as string);
-  } else {
-    // Inicializar el estado correcto según el tamaño actual del documento
-    updateDeviceState();
-  }
+  // Inicializar el estado correcto según el tamaño actual del documento
+  updateDeviceState();
   window.addEventListener('resize', handleResize);
   console.log("onMounted");
 });
@@ -63,9 +53,11 @@ onUnmounted(() => {
   console.log("onUnmounted");
 });
 
+// Watcher para cambios en documentWidth
 watch(documentWidth, (newValue, oldValue) => {
   updateDeviceState();
 });
+
 
 </script>
 
