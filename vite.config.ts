@@ -15,30 +15,27 @@
 //   }
 // })
 
+// test glb
+
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import gltf from 'vite-plugin-gltf';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    gltf({
+      transforms: [
+        // Aquí puedes agregar transformaciones si es necesario
+      ],
+    }),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build: {
-    outDir: 'dist',
-    assetsDir: 'static',
-    rollupOptions: {
-      input: {
-        main: fileURLToPath(new URL('./index.html', import.meta.url)),
-      },
-      output: {
-        assetFileNames: 'assets/[name].[ext]',
-      }
-    }
-  }
+  assetsInclude: ['**/*.glb'],
 });

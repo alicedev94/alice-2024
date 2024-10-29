@@ -4,9 +4,13 @@ import BodyCo from '@/components/BodyCo.vue'
 import HeaderCo from '@/components/HeaderCo.vue'
 import FooterCo from '@/components/FooterCo.vue'
 
+// Test componet
 import Image from '@/components/imgTEST.vue'
+import DogCo from '@/components/DogCo.vue'
+
 
 import { useModeStore } from '@/stores/mode'
+
 const mode = useModeStore()
 
 const changeMode = () => {
@@ -29,5 +33,8 @@ const onlyTestContent = [0]
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
     <BodyCo v-for="item in onlyTestContent" />
   </div>
+
+  <!-- Test usage component -->
+  <DogCo />
   <FooterCo />
 </template>
