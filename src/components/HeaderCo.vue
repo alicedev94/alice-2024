@@ -8,46 +8,65 @@ import moonDarkTheme from '@/assets/icon/theme/moon-light.svg'
 import menuDarkTheme from '@/assets/icon/menu/menu-light.svg'
 import gitHubDarkTheme from '@/assets/icon/gitHub/github-dark.svg'
 import linkeDarkTheme from '@/assets/icon/linkedin/linke-dark.svg'
-// import vueDarkTheme from '@/assets/icon/Work/vue-dark.svg'
+import vueDarkTheme from '@/assets/icon/Work/vue-dark.svg'
 
 // Light theme images.
 import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
 import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
 import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
-// import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
+import linkeLightTheme from '@/assets/icon/linkedin/linke-light.svg'
+import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
 
 // State
 const mode = useModeStore()
 const name = useNameStore()
 
 // detect that it is mobile
-const documentWidth = ref(document.documentElement.clientWidth);
 
-const isMobile = ref(false)
-const isDesktop = ref(true)
+const documentWidth = ref(document.documentElement.clientWidth);
+const isMobile = ref(false);
+const isDesktop = ref(true);
 
 const handleResize = () => {
   documentWidth.value = document.documentElement.clientWidth;
+  updateDeviceState();
+};
+
+const updateDeviceState = () => {
+  if (documentWidth.value <= 769) {
+    isMobile.value = true;
+    isDesktop.value = false;
+  } else {
+    isMobile.value = false;
+    isDesktop.value = true;
+  }
+  // Guardar el estado en localStorage
+  localStorage.setItem('isMobile', JSON.stringify(isMobile.value));
+  localStorage.setItem('isDesktop', JSON.stringify(isDesktop.value));
 };
 
 onMounted(() => {
+  // Restaurar el estado desde localStorage
+  if (localStorage.getItem('isMobile')) {
+    isMobile.value = JSON.parse(localStorage.getItem('isMobile'));
+    isDesktop.value = JSON.parse(localStorage.getItem('isDesktop'));
+  } else {
+    // Inicializar el estado correcto según el tamaño actual del documento
+    updateDeviceState();
+  }
   window.addEventListener('resize', handleResize);
+  console.log("onMounted");
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
+  console.log("onUnmounted");
 });
 
-// Whatchers
 watch(documentWidth, (newValue, oldValue) => {
-  if (newValue <= 769) {
-    isMobile.value = true
-    isDesktop.value = false
-  } else {
-    isMobile.value = false
-    isDesktop.value = true
-  }
+  updateDeviceState();
 });
+
 </script>
 
 <template>
@@ -60,7 +79,7 @@ watch(documentWidth, (newValue, oldValue) => {
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <!-- Work Experience -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
-          <img :src="mode.isLightMode ? linkeDarkTheme : linkeDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
           <p class="header-font underline-p">Work Experience</p>
         </div>
         <!-- 
@@ -68,7 +87,7 @@ watch(documentWidth, (newValue, oldValue) => {
 
         <!-- Linkedin -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? gitHubLightTheme : linkeDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? linkeLightTheme : linkeDarkTheme" alt="menu.svg" />
           <p class="header-font underline-p">Linkedin</p>
         </div>
 
