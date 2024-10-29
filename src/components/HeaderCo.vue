@@ -14,7 +14,7 @@ import linkeDarkTheme from '@/assets/icon/linkedin/linke-dark.svg'
 import sunLightTheme from '@/assets/icon/theme/sun-dark.svg'
 import menuLightTheme from '@/assets/icon/menu/menu-dark.svg'
 import gitHubLightTheme from '@/assets/icon/gitHub/github-light.svg'
-import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
+// import vueLightTheme from '@/assets/icon/Work/vue-light.svg'
 
 // State
 const mode = useModeStore()
@@ -60,7 +60,7 @@ watch(documentWidth, (newValue, oldValue) => {
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <!-- Work Experience -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
-          <img :src="mode.isLightMode ? vueLightTheme : vueLightTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? linkeDarkTheme : linkeDarkTheme" alt="menu.svg" />
           <p class="header-font underline-p">Work Experience</p>
         </div>
         <!-- 
