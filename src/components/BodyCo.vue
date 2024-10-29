@@ -15,10 +15,11 @@ const name = useNameStore()
   <div class="eme-core-center-app">
     <div class="eme-card">
       <div :class="[
-        'principal-trasition eme-content eme-orizontal',
+        'principal-trasition eme-content eme-orizontal cont-message',
         mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
       ]">
-        <AvatarCo />
+        <AvatarCo
+          :class="['eme-color-avatar-light', mode.isLightMode ? 'eme-color-avatar-light' : 'eme-color-avatar-dark']" />
         <p
           :class="['text-card eme-text-center arvo-regular', mode.isLightMode ? 'emerald-text-light' : 'emerald-text-dark']">
           Independent Software Developer, passionate lover and evangelist of JavaScript.
@@ -42,7 +43,12 @@ const name = useNameStore()
 
 <style scoped>
 .eme-card {
-  margin-top: 12.5rem;
+  margin-top: 14rem;
+}
+
+.cont-message {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
 
 .text-card {
@@ -122,5 +128,13 @@ h2 {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.eme-color-avatar-light {
+  background-color: #000000;
+}
+
+.eme-color-avatar-dark {
+  background-color: #ffffff;
 }
 </style>

@@ -73,19 +73,19 @@ watch(documentWidth, (newValue, oldValue) => {
       <div class="eme-orizontal m-plus-rounded-1c-bold">
         <!-- Work Experience -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element ">
-          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? vueLightTheme : vueDarkTheme" alt="logo-vue.svg" />
           <p class="header-font underline-p">Work Experience</p>
         </div>
 
         <!-- Linkedin -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? linkeLightTheme : linkeDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? linkeLightTheme : linkeDarkTheme" alt="logo-linkedin.svg" />
           <p class="header-font underline-p">Linkedin</p>
         </div>
 
         <!-- GitHub -->
         <div v-if="isDesktop" @click="$emit('showOptions')" class="eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="menu.svg" />
+          <img :src="mode.isLightMode ? gitHubLightTheme : gitHubDarkTheme" alt="github.svg" />
           <p class="header-font underline-p">Source</p>
         </div>
       </div>
@@ -94,7 +94,7 @@ watch(documentWidth, (newValue, oldValue) => {
       <div class="eme-orizontal items-2">
         <!-- Theme  -->
         <div v-if="isDesktop" @click="$emit('changeMode')" class="eme-nav-theme eme-btn eme-orizontal header-element">
-          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="mode.svg" />
+          <img :src="mode.isLightMode ? sunLightTheme : moonDarkTheme" alt="theme.svg" />
         </div>
 
         <!-- Menu -->
