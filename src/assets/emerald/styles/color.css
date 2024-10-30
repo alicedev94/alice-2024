@@ -17,8 +17,13 @@
   --eme-footer-light-color: #332f2c;
 
   /* New theme */
-  --eme-color-font-light: #9f9f9f;
-  --eme-color-font-dark: #242424;
+
+  /* light */
+  /* #9f9f9f */
+  /* dark */
+  /* #242424 */
+  --eme-color-font-light: #ffffff; 
+  --eme-color-font-dark: #000000;
 
   --eme-color-card-light: #f9f9f9;
   --eme-color-card-dark: #242424;
