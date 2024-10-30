@@ -13,7 +13,9 @@ import { useModeStore } from '@/stores/mode'
 const mode = useModeStore()
 
 const changeMode = () => {
-  mode.chageMode()
+  // for producction
+  // mode.chageMode()
+  alert("dev work")
 }
 
 const showOptions = () => {
