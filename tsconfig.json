@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "typeRoots": ["./node_modules/@types"],
     "baseUrl": "./",
     "paths": {

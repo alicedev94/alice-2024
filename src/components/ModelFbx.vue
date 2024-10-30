@@ -43,13 +43,13 @@ onMounted(() => {
 
     mtlLoader.load(Textures, (materials) => {
         materials.preload();
-        const objLoader = new OBJLoader();
+        const objLoader = new OBJLoader() as any;
         objLoader.setMaterials(materials);
-        objLoader.load(Aincrad, (object) => {
+        objLoader.load(Aincrad, (object: any) => {
             model = object;
             scene.add(model);
             model.position.set(0, -2, -450);
-        }, undefined, (error) => {
+        }, undefined, (error: any) => {
             console.error('Error al cargar el modelo:', error);
         });
     });
