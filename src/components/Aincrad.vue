@@ -4,8 +4,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
-
-// Obj and mtl
 import Aincrad from '@/assets/aincrad/Aincrad.obj';
 import Textures from '@/assets/aincrad/Aincrad.mtl';
 
@@ -31,6 +29,13 @@ onMounted(() => {
     controls.dampingFactor = 0.25;
     controls.maxDistance = 50; // Máxima distancia de zoom
     controls.minDistance = 5; // Mínima distancia de zoom
+
+    // Permitir scroll cuando el cursor esté sobre el modelo
+    const allowScroll = (event) => {
+        event.stopPropagation();
+    };
+
+    threeContainer.value.addEventListener('wheel', allowScroll);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
@@ -85,10 +90,12 @@ onMounted(() => {
     onUnmounted(() => {
         renderer.dispose();
         if (threeContainer.value) {
+            threeContainer.value.removeEventListener('wheel', allowScroll);
             threeContainer.value.removeChild(renderer.domElement);
         }
     });
 });
+
 </script>
 
 <template>

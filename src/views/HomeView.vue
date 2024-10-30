@@ -4,7 +4,7 @@ import HeaderCo from '@/components/HeaderCo.vue'
 import FooterCo from '@/components/FooterCo.vue'
 
 // Test componet
-import Aincrad from '@/components/ModelFbx.vue'
+import Aincrad from '@/components/Aincrad.vue'
 import CardCo from '@/components/CardCo.vue'
 
 import { useModeStore } from '@/stores/mode'
