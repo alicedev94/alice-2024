@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import CardCo from './CardCo.vue'
 import { useModeStore } from '@/stores/mode'
 import { useNameStore } from '@/stores/name'

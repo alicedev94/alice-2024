@@ -1,14 +1,15 @@
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+
 // Obj and mtl
 import Aincrad from '@/assets/aincrad/Aincrad.obj';
 import Textures from '@/assets/aincrad/Aincrad.mtl';
 
-const threeContainer = ref<HTMLElement | null>(null);
+const threeContainer = ref(null);
 
 onMounted(() => {
     const scene = new THREE.Scene();
@@ -39,17 +40,17 @@ onMounted(() => {
     scene.add(directionalLight);
 
     const mtlLoader = new MTLLoader();
-    let model: THREE.Group; // | undefined
+    let model;
 
     mtlLoader.load(Textures, (materials) => {
         materials.preload();
-        const objLoader = new OBJLoader() as any;
+        const objLoader = new OBJLoader();
         objLoader.setMaterials(materials);
-        objLoader.load(Aincrad, (object: any) => {
+        objLoader.load(Aincrad, (object) => {
             model = object;
             scene.add(model);
             model.position.set(0, -2, -450);
-        }, undefined, (error: any) => {
+        }, undefined, (error) => {
             console.error('Error al cargar el modelo:', error);
         });
     });
@@ -90,14 +91,11 @@ onMounted(() => {
 });
 </script>
 
-
-
 <template>
     <div class="content-model">
         <div class="model" ref="threeContainer"></div>
     </div>
 </template>
-
 
 <style scoped>
 .content-model {
