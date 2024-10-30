@@ -24,6 +24,12 @@ onMounted(() => {
     }
 
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false; // Desactivar panorámico
+    controls.enableRotate = false; // Desactivar rotación
+    controls.enableDamping = true; // Añadir inercia
+    controls.dampingFactor = 0.25;
+    controls.maxDistance = 50; // Máxima distancia de zoom
+    controls.minDistance = 5; // Mínima distancia de zoom
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
@@ -42,7 +48,7 @@ onMounted(() => {
         objLoader.load(Aincrad, (object) => {
             model = object;
             scene.add(model);
-            model.position.set(0, -2, -400);
+            model.position.set(0, -2, -450);
         }, undefined, (error) => {
             console.error('Error al cargar el modelo:', error);
         });
@@ -97,8 +103,9 @@ onMounted(() => {
 .content-model {
     display: flex;
     justify-content: center;
-    height: 40rem;
+    height: 30rem;
     width: 100%;
+    /* background-color: aquamarine; */
 }
 
 .model {

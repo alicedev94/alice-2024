@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import BodyCo from '@/components/BodyCo.vue'
 import HeaderCo from '@/components/HeaderCo.vue'
 import FooterCo from '@/components/FooterCo.vue'
@@ -7,9 +6,10 @@ import FooterCo from '@/components/FooterCo.vue'
 // Test componet
 import DogCo from '@/components/DogCo.vue'
 import Aincrad from '@/components/ModelFbx.vue'
-
+import CardCo from '@/components/CardCo.vue'
 
 import { useModeStore } from '@/stores/mode'
+
 
 const mode = useModeStore()
 
@@ -35,13 +35,15 @@ const onlyTestContent = [0]
     <div class="app">
       <BodyCo v-for="item in onlyTestContent" />
       <!-- <DogCo /> -->
-
       <Aincrad />
+      <CardCo />
     </div>
 
   </div>
 
   <!-- Test usage component -->
+
+  <!-- Este footer me esta dando conflictos -->
 
   <FooterCo />
 </template>
