@@ -2,15 +2,17 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import model1 from '@/assets/dog/dog.glb';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+// Obj and mtl
+import Aincrad from '@/assets/aincrad/Aincrad.obj';
+import Textures from '@/assets/aincrad/Aincrad.mtl';
 
 const threeContainer = ref<HTMLElement | null>(null);
 
 onMounted(() => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
 
     if (threeContainer.value) {
@@ -30,19 +32,20 @@ onMounted(() => {
     directionalLight.position.set(5, 10, 7.5);
     scene.add(directionalLight);
 
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
-
-    const loader = new GLTFLoader();
-    loader.setDRACOLoader(dracoLoader);
+    const mtlLoader = new MTLLoader();
     let model: THREE.Group | undefined;
 
-    loader.load(model1, (gltf) => {
-        model = gltf.scene;
-        scene.add(model);
-        model.position.set(0, -2, -1);
-    }, undefined, (error) => {
-        console.error('Error al cargar el modelo:', error);
+    mtlLoader.load(Textures, (materials) => {
+        materials.preload();
+        const objLoader = new OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.load(Aincrad, (object) => {
+            model = object;
+            scene.add(model);
+            model.position.set(0, -2, -400);
+        }, undefined, (error) => {
+            console.error('Error al cargar el modelo:', error);
+        });
     });
 
     camera.position.z = 5;
@@ -64,7 +67,7 @@ onMounted(() => {
         resizeRendererToDisplaySize();
         requestAnimationFrame(animate);
         if (model) {
-            model.rotation.y -= 0.01;
+            model.rotation.y += 0.01;
         }
         controls.update();
         renderer.render(scene, camera);
@@ -81,11 +84,14 @@ onMounted(() => {
 });
 </script>
 
+
+
 <template>
     <div class="content-model">
         <div class="model" ref="threeContainer"></div>
     </div>
 </template>
+
 
 <style scoped>
 .content-model {

@@ -5,8 +5,8 @@ import HeaderCo from '@/components/HeaderCo.vue'
 import FooterCo from '@/components/FooterCo.vue'
 
 // Test componet
-import Image from '@/components/imgTEST.vue'
 import DogCo from '@/components/DogCo.vue'
+import Aincrad from '@/components/ModelFbx.vue'
 
 
 import { useModeStore } from '@/stores/mode'
@@ -34,7 +34,9 @@ const onlyTestContent = [0]
 
     <div class="app">
       <BodyCo v-for="item in onlyTestContent" />
-      <DogCo class="dog-co" />
+      <!-- <DogCo /> -->
+
+      <Aincrad />
     </div>
 
   </div>
