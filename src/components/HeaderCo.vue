@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useModeStore } from '@/stores/mode'
 import { useNameStore } from '@/stores/name'
