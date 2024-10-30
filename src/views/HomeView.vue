@@ -31,10 +31,22 @@ const onlyTestContent = [0]
     mode.isLightMode ? 'eme-light' : 'eme-dark',
   ]">
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
-    <BodyCo v-for="item in onlyTestContent" />
+
+    <div class="app">
+      <BodyCo v-for="item in onlyTestContent" />
+      <DogCo class="dog-co" />
+    </div>
+
   </div>
 
   <!-- Test usage component -->
-  <DogCo />
+
   <FooterCo />
 </template>
+
+<style scoped>
+.app {
+  display: flex;
+  flex-direction: column;
+}
+</style>

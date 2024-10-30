@@ -44,20 +44,16 @@ onMounted(() => {
   // Inicializar el estado correcto según el tamaño actual del documento
   updateDeviceState();
   window.addEventListener('resize', handleResize);
-  console.log("onMounted");
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
-  console.log("onUnmounted");
 });
 
 // Watcher para cambios en documentWidth
 watch(documentWidth, (newValue, oldValue) => {
   updateDeviceState();
 });
-
-
 </script>
 
 <template>

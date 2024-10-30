@@ -1,82 +1,112 @@
 <template>
-    <div ref="threeContainer"></div>
+    <div class="content-model">
+        <div class="model" ref="threeContainer"></div>
+    </div>
 </template>
 
 <script setup lang="ts">
-// import { ref, onMounted, onUnmounted } from 'vue';
-// import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import { ref, onMounted, onUnmounted } from 'vue';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+import model1 from '@/assets/dog/dog.glb';
 
-import model from '@/assets/dog/dog.glb'
-console.log("model", model)
-// const threeContainer = ref<HTMLElement | null>(null);
+const threeContainer = ref<HTMLElement | null>(null);
 
-// onMounted(() => {
-//     // Escena, cámara y renderizador
-//     const scene = new THREE.Scene();
-//     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-//     const renderer = new THREE.WebGLRenderer({ alpha: true }); // Hacer que el fondo sea transparente
-//     renderer.setSize(window.innerWidth, window.innerHeight);
+onMounted(() => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
 
-//     if (threeContainer.value) {
-//         threeContainer.value.appendChild(renderer.domElement);
-//     }
+    if (threeContainer.value) {
+        const { clientWidth: width, clientHeight: height } = threeContainer.value;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        threeContainer.value.appendChild(renderer.domElement);
+    }
 
-//     // Controles de órbita
-//     const controls = new OrbitControls(camera, renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
 
-//     // Añadir luz
-//     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-//     scene.add(ambientLight);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
 
-//     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-//     directionalLight.position.set(5, 10, 7.5);
-//     scene.add(directionalLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(5, 10, 7.5);
+    scene.add(directionalLight);
 
-//     // Configurar DRACOLoader
-//     const dracoLoader = new DRACOLoader();
-//     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/'); // Ruta de los decodificadores Draco
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
 
-//     // Cargar modelo GLB con Draco
-//     const loader = new GLTFLoader();
-//     loader.setDRACOLoader(dracoLoader);
-//     let model: THREE.Group | undefined;
+    const loader = new GLTFLoader();
+    loader.setDRACOLoader(dracoLoader);
+    let model: THREE.Group | undefined;
 
-//     loader.load(model, (gltf) => {
-//         model = gltf.scene;
-//         scene.add(model);
-//         model.position.set(0, 0, 0);
-//     }, undefined, (error) => {
-//         console.error('Error al cargar el modelo:', error);
-//     });
+    loader.load(model1, (gltf) => {
+        model = gltf.scene;
+        scene.add(model);
+        model.position.set(0, -2, -1);
+    }, undefined, (error) => {
+        console.error('Error al cargar el modelo:', error);
+    });
 
-//     // Posición de la cámara
-//     camera.position.z = 5;
+    camera.position.z = 5;
 
-//     // Animación
-//     function animate() {
-//         requestAnimationFrame(animate);
-//         if (model) {
-//             model.rotation.y += 0.01; // Rota el modelo en el eje Y
-//         }
-//         controls.update(); // Actualiza los controles
-//         renderer.render(scene, camera);
-//     }
+    function resizeRendererToDisplaySize() {
+        if (threeContainer.value) {
+            const width = threeContainer.value.clientWidth;
+            const height = threeContainer.value.clientHeight;
+            const needResize = renderer.domElement.width !== width || renderer.domElement.height !== height;
+            if (needResize) {
+                renderer.setSize(width, height, false);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            }
+        }
+    }
 
-//     animate();
+    function animate() {
+        resizeRendererToDisplaySize();
+        requestAnimationFrame(animate);
+        if (model) {
+            model.rotation.y -= 0.01;
+        }
+        controls.update();
+        renderer.render(scene, camera);
+    }
 
-//     // Limpiar al desmontar el componente
-//     onUnmounted(() => {
-//         renderer.dispose();
-//         if (threeContainer.value) {
-//             threeContainer.value.removeChild(renderer.domElement);
-//         }
-//     });
-// });
+    animate();
+
+    onUnmounted(() => {
+        renderer.dispose();
+        if (threeContainer.value) {
+            threeContainer.value.removeChild(renderer.domElement);
+        }
+    });
+});
 </script>
 
+
 <style scoped>
-/* Estilos opcionales */
+.content-model {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 40rem;
+    width: 100%;
+    /* background-color: rgb(202, 16, 56); */
+}
+
+.model {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 30rem;
+    width: 50rem;
+    /* background-color: blue; */
+    position: relative;
+    overflow: hidden;
+    /* Asegura que el contenido no se desborde */
+}
 </style>

@@ -43,6 +43,7 @@ const name = useNameStore()
 <style scoped>
 .eme-card {
   margin-top: 14rem;
+
 }
 
 .cont-message {
