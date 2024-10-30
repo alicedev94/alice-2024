@@ -39,7 +39,7 @@ onMounted(() => {
     scene.add(directionalLight);
 
     const mtlLoader = new MTLLoader();
-    let model: THREE.Group | undefined;
+    let model: THREE.Group; // | undefined
 
     mtlLoader.load(Textures, (materials) => {
         materials.preload();
