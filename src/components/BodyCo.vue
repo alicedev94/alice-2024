@@ -10,7 +10,6 @@ const name = useNameStore()
 </script>
 
 <template>
-
   <!-- Card -->
   <div class="eme-core-center-app">
     <div class="eme-card">
@@ -44,6 +43,7 @@ const name = useNameStore()
 <style scoped>
 .eme-card {
   margin-top: 14rem;
+
 }
 
 .cont-message {

@@ -1,38 +1,32 @@
 <script setup lang="ts">
 import { useModeStore } from '@/stores/mode'
-import { useNameStore } from '@/stores/name'
+// import { useNameStore } from '@/stores/name'
 
 const mode = useModeStore()
-const name = useNameStore()
+// const name = useNameStore()
 </script>
 
 <template>
-  <div class="eme-card">
-    <div
-      :class="[
-        'principal-trasition eme-content',
-        mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',
-      ]"
-    >
-      <p class="eme-text-center arvo-regular">
-        Hello, I'm an indie app developer based in Japan!
-      </p>
-    </div>
-
-    <h1 class="eme-text-center m-plus-rounded-1c-bold">{{ name.homePage }}</h1>
-
-    <p class="arvo-regular eme-text-init">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit, sed. Vero
-      magni adipisci, quasi quo commodi quidem at molestias. Eligendi soluta
-      illo incidunt. Doloremque, iste impedit ratione laborum quidem, nihil et
-      atque in quaerat commodi hic? Modi alias sequi sed fuga labore rem porro!
-      Odio, numquam fuga doloremque itaque perspiciatis temporibus. Amet id
-      asperiores fugit impedit non libero, magnam omnis debitis! Minima sed
-      corporis in repudiandae veniam fugiat neque ab atque ratione, accusamus
-      qui debitis accusantium illum mollitia, perspiciatis nemo voluptates
-      aliquid voluptate, consequatur iste delectus nostrum tenetur animi eum!
-      Doloremque accusamus nesciunt cupiditate possimus quae distinctio expedita
-      corrupti minus.
+  <div :class="['principal-trasition eme-card', mode.isLightMode ? 'eme-content-light' : 'eme-content-dark',]">
+    <p :class="['eme-des arvo-regular eme-text-init', mode.isLightMode ? 'font-color-light' : 'font-color-dark']">
+      Aincrad (アインクラッド Ainkuraddo): A Monument to Akihiko Kayaba's Genius. May the floating castle continue to shine in
+      our hearts. Long live Aincrad.
     </p>
   </div>
 </template>
+
+<style scoped>
+.eme-card {
+  font-size: 20rem;
+  align-self: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  /* Añade padding para espaciar el texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  text-align: justify;
+  border-radius: 1rem;
+}
+</style>
