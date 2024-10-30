@@ -1,10 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import BodyCo from '@/components/BodyCo.vue'
 import HeaderCo from '@/components/HeaderCo.vue'
 import FooterCo from '@/components/FooterCo.vue'
 
 // Test componet
-import DogCo from '@/components/DogCo.vue'
 import Aincrad from '@/components/ModelFbx.vue'
 import CardCo from '@/components/CardCo.vue'
 
