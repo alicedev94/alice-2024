@@ -34,7 +34,7 @@ const onlyTestContent = [0]
     <HeaderCo @change-mode="changeMode" @show-options="showOptions" />
 
     <div class="app">
-      <BodyCo v-for="item in onlyTestContent" />
+      <BodyCo v-for="item in onlyTestContent" :key="item" />
       <!-- <DogCo /> -->
       <Aincrad />
       <CardCo />
